@@ -1,4 +1,5 @@
 
+import Controllers.PersonaController;
 import Models.Persona;
 
 public class App {
@@ -35,31 +36,39 @@ public class App {
                                 new Persona("Lorena", 23),
                                 new Persona("Miguel", 52)
                 };
-
-                /// TODOS los métodos deben ser implementados en la clase PersonaController
-                // Crear una instancia de la clase PersonaController y llamar a los métodos
-                // NO usar metodos estaticos
-
-                // 1 - Implementar un método para ordenar las personas por edad en orden
-                // desecendente tipo selección
-
-                // 1.2 - Buscar a la persona con las sigueintes edaddes en el arreglo de
-                // personas ya ordenarod por edad
-                // - 25
-                // - 70
-
-                // 2 - Implementar un método para ordenar las personas por su nombre en orden
-                // ascendente tipo inserción
-
-                // 2.2 - Buscar a la persona con los sigueintes nombres en el arreglo de
-                // personas ya ordenarod por nombre
-                // - "Anais"
-                // - "Miguel"
-
-                // Imprimir:
-                // el arreglo ordenado para cada punto 1 y 2
-                // Si encontró a la persona en el arreglo de personas los datos de dicha persona
-                // y su posición
-                // Si no encontró a la persona en el arreglo de personas
+              
+        PersonaController controller = new PersonaController();
+        // Ordenar por edad en orden descendente
+        controller.ordenarPorEdadDescendente(personas);
+        System.out.println("Personas ordenadas por edad (descendente):");
+        for (Persona persona : personas) {
+            System.out.println(persona);
         }
+        // Buscar por edad
+        int[] edades = {25, 70};
+        for (int edad : edades) {
+            int index = controller.buscarEdad(personas, edad);
+            if (index != -1) {
+                System.out.println("Encontrado: " + personas[index] + " en la posición " + index);
+            } else {
+                System.out.println("Edad " + edad + " no encontrada.");
+            }
+        }
+        // Ordenar por nombre en orden ascendente
+        controller.ordenarPorNombreAscendente(personas);
+        System.out.println("\nPersonas ordenadas por nombre (ascendente):");
+        for (Persona persona : personas) {
+            System.out.println(persona);
+        }
+        // Buscar por nombre
+        String[] nombres = {"Anais", "Miguel"};
+        for (String nombre : nombres) {
+            int index = controller.buscarPorNombre(personas, nombre);
+            if (index != -1) {
+                System.out.println("Encontrado: " + personas[index] + " en la posición " + index);
+            } else {
+                System.out.println("Nombre \"" + nombre + "\" no encontrado.");
+            }
+        }
+    }
 }
